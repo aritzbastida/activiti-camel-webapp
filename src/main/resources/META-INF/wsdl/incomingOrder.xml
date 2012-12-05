@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="IncomingOrderEndpointService" targetNamespace="http://endpoints.camel.atos.net/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://endpoints.camel.atos.net/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://endpoints.camel.atos.net/" version="1.0" xmlns:tns="http://endpoints.camel.atos.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="createOrder" type="tns:createOrder"/>
+<xs:element name="createOrderResponse" type="tns:createOrderResponse"/>
+<xs:element name="order" type="tns:order"/>
+<xs:complexType name="createOrder">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="order" type="tns:order"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="order">
+    <xs:sequence/>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+    <xs:attribute name="partName" type="xs:string"/>
+    <xs:attribute name="amount" type="xs:int" use="required"/>
+    <xs:attribute name="customerName" type="xs:string"/>
+  </xs:complexType>
+<xs:complexType name="createOrderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createOrder">
+    <wsdl:part element="tns:createOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrderResponse">
+    <wsdl:part element="tns:createOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IncomingOrderEndpoint">
+    <wsdl:operation name="createOrder">
+      <wsdl:input message="tns:createOrder" name="createOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:createOrderResponse" name="createOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IncomingOrderEndpointServiceSoapBinding" type="tns:IncomingOrderEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createOrder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createOrder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IncomingOrderEndpointService">
+    <wsdl:port binding="tns:IncomingOrderEndpointServiceSoapBinding" name="IncomingOrderEndpointPort">
+      <soap:address location="http://localhost:9000/order"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

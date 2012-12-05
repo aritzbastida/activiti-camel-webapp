@@ -1,0 +1,10 @@
+#################
+## Eclipse
+#################
+
+.metadata
+target/
+*.log
+*.tmp
+*.bak
+*.swp

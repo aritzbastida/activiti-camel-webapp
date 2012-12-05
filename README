@@ -1,0 +1,11 @@
+Potential issues
+--------------------------------
+
+* Different versions of Spring Framework: Activiti depends on version 3.1.2.RELEASE and Camel on version 3.0.7.RELEASE. 
+  DECISION: Force to version 3.1.2.RELEASE (runtime errors could arise if Spring Framework is not fully backward compatible between these two versions).
+  
+* Different versions of JavaMail: Activiti depends on version 1.4.1 and Camel on version 1.4.5.
+  DECISION: Force to version 1.4.5 (runtime errors could arise if JavaMail is not fully backward compatible between these two versions).
+  
+* Different versions of OSGI (org.osgi.core): ActiveMQ depends on version 4.1.0 and Restlet on version 4.2.0 (managed from 4.0.0 by Activiti REST).
+  DECISION: Force to version 4.1.0.
