@@ -56,11 +56,11 @@ public class BusinessRoutes extends RouteBuilder {
 		
 		from("direct:ordercsv")		// -------------------> CORREEEEEEEEEEEEEEEEEEGIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			.marshal().bindy(BindyType.Csv, "net.atos.camel.entities")
-			.to("file:d://cameldata/orders?fileName=orders-${date:now:yyyyMMdd-hhmmss}.csv");
+			.to("file:{{file.inbox}}?fileName=orders-${date:now:yyyyMMdd-hhmmss}.csv");
 		
 		from("direct:orderxml")
 			.marshal("jaxb")
-			.to("file:d://cameldata/orders?fileName=orders-${date:now:yyyyMMdd-hhmmss}.xml");		
+			.to("file:{{file.inbox}}?fileName=orders-${date:now:yyyyMMdd-hhmmss}.xml");		
 			
 		from("vm:orderjms")
 			.marshal("jaxb")
